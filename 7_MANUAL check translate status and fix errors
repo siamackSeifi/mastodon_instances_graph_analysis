@@ -1,0 +1,15 @@
+TEMP_check_translation_process.js
+
+
+db.getCollection("instances").aggregate([
+  {
+      $match: {"trending_posts_status": "SUCCESS"},
+  },{
+    $group: {
+      _id: "$translate_status",  // Group by the edge_col_status field
+      count: { $sum: 1 }        // Count the number of documents in each group
+    }
+  }
+]);
+
+
